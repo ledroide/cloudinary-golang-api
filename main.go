@@ -8,7 +8,7 @@ import (
 	"os"
 	"time"
 
-	"sample-cloudinary/handlers"
+	"github.com/abderraoufbensalem/sample-cloudinary/handlers"
 
 	opentracing "github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/ext"
