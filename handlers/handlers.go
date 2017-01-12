@@ -13,7 +13,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"sample-cloudinary/cloudinary"
+	"github.com/abderraoufbensalem/sample-cloudinary/cloudinary"
 )
 
 type imageResource struct {
