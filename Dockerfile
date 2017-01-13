@@ -9,6 +9,6 @@ RUN go get github.com/opentracing/opentracing-go
 RUN go get github.com/openzipkin/zipkin-go-opentracing
 RUN go install github.com/ledroide/cloudinary-golang-api
 
-ENTRYPOINT /go/bin/sample-cloudinary
+ENTRYPOINT /go/bin/cloudinary-golang-api
 
 EXPOSE 8090
