@@ -1,5 +1,6 @@
 FROM golang:alpine
 
+RUN apk update && apk add git
 ADD . /go/src/github.com/abderraoufbensalem/sample-cloudinary
 WORKDIR /go/src/github.com/abderraoufbensalem/sample-cloudinary
 RUN go get github.com/gorilla/mux
