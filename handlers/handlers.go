@@ -13,7 +13,7 @@ import (
 
 	"github.com/gorilla/mux"
 
-	"github.com/abderraoufbensalem/sample-cloudinary/cloudinary"
+	"github.com/ledroide/cloudinary-golang-api/cloudinary"
 )
 
 type imageResource struct {
