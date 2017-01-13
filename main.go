@@ -9,7 +9,6 @@ import (
 	"time"
 
 	"github.com/abderraoufbensalem/sample-cloudinary/handlers"
-
 	opentracing "github.com/opentracing/opentracing-go"
 	"github.com/opentracing/opentracing-go/ext"
 	zipkin "github.com/openzipkin/zipkin-go-opentracing"
