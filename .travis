@@ -1,0 +1,20 @@
+language: go
+
+services:
+  - docker
+
+branches:
+  only:
+    - master
+
+go:
+  - 1.7.x
+
+script:
+  - go get github.com/gorilla/mux
+  - go get github.com/prometheus/client_golang/prometheus
+  - go get github.com/opentracing/opentracing-go
+  - go get github.com/openzipkin/zipkin-go-opentracing
+  - go test
+  - go build
+  - make default
