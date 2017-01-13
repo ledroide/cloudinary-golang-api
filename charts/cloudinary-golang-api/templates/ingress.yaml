@@ -1,0 +1,17 @@
+{{- if .Values.ingress.enabled }}
+apiVersion: extensions/v1beta1
+kind: Ingress
+metadata:
+  name: {{ .Values.service.name }}-ing
+  annotations:
+    ingress.kubernetes.io/rewrite-target: {{ default "/" .Values.ingress.internalPath }} 
+spec:
+  rules:
+  - host: {{ .Values.ingress.domain }}
+    http:
+      paths:
+      - path: {{ .Values.ingress.externalPath }}
+        backend:
+          serviceName: {{ .Values.service.name }}
+          servicePort: {{ .Values.service.externalPort }}
+{{- end }}

@@ -1,0 +1,46 @@
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  name: {{ template "fullname" . }}
+  labels:
+    chart: "{{ .Chart.Name }}-{{ .Chart.Version }}"
+    release: {{ .Values.labels.appRelease }}
+    environment: {{ default "dev" .Values.labels.appEnvironment }}
+spec:
+  replicas: {{ default 1 .Values.replicaCount }}
+  template:
+    metadata:
+      labels:
+        app: {{ template "fullname" . }}
+    spec:
+      imagePullSecrets:
+      - name: {{ .Values.image.registrySecret }}
+      containers:
+      - name: {{ .Chart.Name }}
+        image: "{{ .Values.image.repository }}:{{ .Values.image.tag }}"
+        imagePullPolicy: {{ .Values.image.pullPolicy }}
+        ports:
+        - containerPort: {{ .Values.service.internalPort }}
+        livenessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.internalPort }}
+          initialDelaySeconds: {{ .Values.probe.probeDelay }}
+          periodSeconds:  {{ .Values.probe.probePeriod }}
+          failureThreshold: {{ .Values.probe.probeFailureThreshold }}
+          initialDelaySeconds: {{ .Values.probe.probeInitialDelaySeconds }}
+          periodSeconds: {{ .Values.probe.probePeriodSeconds }}
+          successThreshold: {{ .Values.probe.probeSuccessThreshold }}
+          timeoutSeconds: {{ .Values.probe.probeTimeoutSeconds }}
+        readinessProbe:
+          httpGet:
+            path: /
+            port: {{ .Values.service.internalPort }}
+          initialDelaySeconds: {{ default 10 .Values.probe.probeDelay }}
+          periodSeconds:  {{ default 10 .Values.probe.probePeriod }}
+          failureThreshold: {{ default 1 .Values.probe.probeFailureThreshold }}
+          initialDelaySeconds: {{ default 10 .Values.probe.probeInitialDelaySeconds }}
+          successThreshold: {{ default 1 .Values.probe.probeSuccessThreshold }}
+          timeoutSeconds: {{ default 6 .Values.probe.probeTimeoutSeconds }}
+        resources:
+{{ toYaml .Values.resources | indent 12 }}

@@ -1,0 +1,35 @@
+# Default values for Ricardo micro-service.
+# This is a YAML-formatted file.
+# Declare variables to be passed into your templates.
+replicaCount: 1
+labels:
+  appRelease: stable   # stable unstable codename
+  appEnvironment: staging    # dev prod master staging 
+image:
+  repository: index.docker.io/chricardo/cloudinary-golang-api
+  tag: latest   # should always be an absolute tag when prod - such as v5.2.1
+  pullPolicy: IfNotPresent  # Always/IfNotPresent
+  # registrySecret : hub-ricardogroup  # hub-ricardogroup / ecr-ricardo
+service:
+  name: cloudinary-golang-api
+  type: ClusterIP # ClusterIP/NodePort/LoadBalancer
+  externalPort: 80      # should be a standard privileged port (below 1024)
+  internalPort: 8080    # the port you expose in your dockerfile ; can be privileged
+probe:
+  probeFailureThreshold: 1
+  probeInitialDelaySeconds: 4
+  probePeriodSeconds: 4
+  probeSuccessThreshold: 1
+  probeTimeoutSeconds: 2
+resources:
+  limits:
+    cpu: 100m
+    memory: 128Mi
+  requests:
+    cpu: 100m
+    memory: 128Mi
+ingress:
+  enabled: true
+  domain: ricardo.data.tamedia.cloud # next.ricardo.ch/ricardo.data.tamedia.cloud
+  externalPath: /api/cloudinary # the path part of your API
+  internalPath: /  # "/" is for your document_root ; can also target to "/api/v2"
