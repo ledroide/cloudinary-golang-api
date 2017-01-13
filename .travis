@@ -3,9 +3,9 @@ language: go
 services:
   - docker
 
-branches:
-  only:
-    - master
+#branches:
+#  only:
+#    - master
 
 go:
   - 1.7.x
