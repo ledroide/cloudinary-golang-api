@@ -17,3 +17,7 @@ script:
   - go get github.com/openzipkin/zipkin-go-opentracing
   - go build
   - make default
+
+group: stable
+dist: xenial
+os: linux
