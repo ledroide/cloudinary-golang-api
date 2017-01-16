@@ -9,7 +9,7 @@ docker.build:
 
 .PHONY: docker
 docker: docker.build
-	docker login -u $(DOCKER_USER) -p $(DOCKER_PASSWORD)
+	docker login -u $(DOCKER_USER) -p $(DOCKER_PASSWORD) $(REGISTRY_PROVIDER)
 	docker tag $(TRAVIS_REPO_SLUG):$(GIT_SHA) $(REPOSITORY_NAME):latest
 	docker tag $(TRAVIS_REPO_SLUG):$(GIT_SHA) $(REPOSITORY_NAME):build-$(GIT_SHA)
 	docker tag $(TRAVIS_REPO_SLUG):$(GIT_SHA) $(REPOSITORY_NAME):$(SEMVER)-$(TINYSHA)

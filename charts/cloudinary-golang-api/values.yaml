@@ -7,7 +7,7 @@ labels:
   appEnvironment: staging    # dev prod master staging 
 image:
   repository: ric-docker.jfrog.io/platform/cloudinary-golang-api
-  tag: latest   # should always be an absolute tag when prod - such as v5.2.1
+  tag: fromstation01   # should always be an absolute tag when prod - such as v5.2.1
   pullPolicy: IfNotPresent  # Always/IfNotPresent
   registrySecret : ric-jfrog  # hub-ricardogroup / ecr-ricardo / ric-jfrog
 service:
