@@ -6,10 +6,10 @@ labels:
   appRelease: stable   # stable unstable codename
   appEnvironment: staging    # dev prod master staging 
 image:
-  repository: index.docker.io/chricardo/cloudinary-golang-api
+  repository: ric-docker.jfrog.io/platform/cloudinary-golang-api
   tag: latest   # should always be an absolute tag when prod - such as v5.2.1
   pullPolicy: IfNotPresent  # Always/IfNotPresent
-  # registrySecret : hub-ricardogroup  # hub-ricardogroup / ecr-ricardo
+  registrySecret : ric-jfrog  # hub-ricardogroup / ecr-ricardo / ric-jfrog
 service:
   name: cloudinary-golang-api
   type: ClusterIP # ClusterIP/NodePort/LoadBalancer
