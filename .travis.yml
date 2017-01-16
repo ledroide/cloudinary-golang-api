@@ -3,6 +3,9 @@ language: go
 services:
   - docker
 
+addons:
+  artifacts: true
+
 branches:
   only:
     - master
